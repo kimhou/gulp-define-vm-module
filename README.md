@@ -17,14 +17,14 @@ gulp.src('path/src/index.js')
             .pipe(defineVMModule({
                 moduleName: moduleName
             }))
-            .pipe(gulp.dest('path'));
+            .pipe(gulp.dest('dest'));
 ```
 ## 合并规则
 path 下有 index.js a.js b.js
 index.js依赖a.js b.js
 
 生成
-path/moduleName.js
+dest/moduleName.js
 
 如果有外部依赖则在js中使用window\['require'\](moduleName)引用 (跟子模块依赖区分)
 生成代码会自动转成require(moduleName), 内部模块的require会被derequire重命名

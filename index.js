@@ -7,6 +7,7 @@ var gulp = require('gulp');
 var browserify = require('gulp-browserify');
 var derequire = require('gulp-derequire');
 var throughpipe = require('through-pipes');
+var rename = require('gulp-rename');
 
 function makeCMD(path, moduleContents, opts) {
   var splite = '\\';
@@ -29,7 +30,7 @@ function makeCMD(path, moduleContents, opts) {
       '\r\nvar mod = ' + moduleContents + '; \r\nreturn mod("' + exportModule + '");\r\n});';
 }
 
-function rename(path, moduleName){
+function getName(path, moduleName){
   var splite = '\\';
   if(path.indexOf('/') != -1 && path.indexOf(splite) == -1){
     splite = '/';
@@ -37,11 +38,7 @@ function rename(path, moduleName){
   var arr = path.split(splite);
   var name = moduleName ? moduleName : arr && arr.length > 1 && arr[arr.length - 2];
 
-  var p = arr.splice(0, arr.length - 2);
-
-  p.push(name + '.js');
-  p.join(splite);
-  return p.join(splite);;
+  return name;
 }
 
 function makeVMModule(options){
@@ -81,8 +78,6 @@ function makeVMModule(options){
     opts.moduleName = options.moduleName;
     contents = makeCMD(file.path, contents, opts);
 
-    file.path = gutil.replaceExtension(file.path, '.js');
-    file.path = rename(file.path, options.moduleName);
     file.contents = new Buffer(contents);
     this.queue(file);
   });
@@ -104,6 +99,10 @@ module.exports = function(options) {
         .pipe(makeVMModule(options))
         .on('error', function (err) {
           console.log(err)
-        });
+        })
+        .pipe(rename(function(path){
+          path.basename = getName(path.dirname, options.moduleName);
+          path.extname = ".js";
+        }));
   });
 };
