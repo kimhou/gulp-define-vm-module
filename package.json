@@ -1,0 +1,59 @@
+{
+  "name": "gulp-define-vm-module",
+  "version": "0.2.5",
+  "description": "gulp.js plugin for creating modules",
+  "homepage": "https://github.com/kimhou/gulp-define-vm-module",
+  "main": "index.js",
+  "scripts": {
+    "test": "istanbul cover ./node_modules/.bin/_mocha --report $(if [ \"$TRAVIS\" ]; then echo lcovonly; else echo html; fi) -- && if [ \"$TRAVIS\" ]; then cat ./coverage/lcov.info | ./node_modules/.bin/coveralls; fi"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/kimhou/gulp-define-vm-module.git"
+  },
+  "keywords": [
+    "gulpplugin",
+    "gulpfriendly",
+    "amd",
+    "commonjs",
+    "node"
+  ],
+  "author": {
+    "name": "kimhou"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "gulp-browserify": "^0.5.1",
+    "gulp-derequire": "^2.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-util": "^3.0.4",
+    "through-pipes": "0.0.4",
+    "through2": "^2.0.0"
+  },
+  "devDependencies": {},
+  "gitHead": "03bac804f85ffb486dfb9c4eae8bc3b4dd16cd7e",
+  "bugs": {
+    "url": "https://github.com/kimhou/gulp-define-vm-module/issues"
+  },
+  "_id": "gulp-define-vm-module@0.2.5",
+  "_shasum": "ea53501d518e049a4c08aab175db8de745a2c7f3",
+  "_from": "gulp-define-vm-module@*",
+  "_npmVersion": "2.14.2",
+  "_nodeVersion": "4.0.0",
+  "_npmUser": {
+    "name": "honkang",
+    "email": "honkang@163.com"
+  },
+  "maintainers": [
+    {
+      "name": "honkang",
+      "email": "honkang@163.com"
+    }
+  ],
+  "dist": {
+    "shasum": "ea53501d518e049a4c08aab175db8de745a2c7f3",
+    "tarball": "http://registry.npmjs.org/gulp-define-vm-module/-/gulp-define-vm-module-0.2.5.tgz"
+  },
+  "directories": {},
+  "_resolved": "https://registry.npmjs.org/gulp-define-vm-module/-/gulp-define-vm-module-0.2.5.tgz"
+}
